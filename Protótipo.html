@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>EconoCompras</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#f2f4f8;
+}
+
+header{
+background:#4f46e5;
+color:white;
+padding:20px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:30px;
+}
+
+.search-box{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+.filters{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:10px;
+}
+
+select{
+flex:1;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#4f46e5;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#3730a3;
+}
+
+.resultados{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:15px;
+}
+
+.produto{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.08);
+transition:0.2s;
+}
+
+.produto:hover{
+transform:translateY(-4px);
+}
+
+.nome{
+font-weight:bold;
+margin-bottom:5px;
+}
+
+.preco{
+color:#16a34a;
+font-weight:bold;
+margin-top:5px;
+}
+
+.loja{
+font-size:14px;
+color:#555;
+}
+
+.categoria{
+font-size:13px;
+color:#777;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+EconoCompras
+</header>
+
+<div class="container">
+
+<div class="search-box">
+
+<input type="text" id="busca" placeholder="Pesquisar produto...">
+
+<div class="filters">
+
+<select id="categoria">
+<option value="todos">Categoria</option>
+<option value="eletronico">Eletrônicos</option>
+<option value="casa">Casa</option>
+<option value="roupa">Roupas</option>
+</select>
+
+<select id="preco">
+<option value="todos">Ordenar preço</option>
+<option value="baixo">Mais barato</option>
+<option value="alto">Mais caro</option>
+</select>
+
+<select id="qualidade">
+<option value="todos">Qualidade</option>
+<option value="4">4 estrelas ou mais</option>
+<option value="3">3 estrelas ou mais</option>
+</select>
+
+<select id="nacionalidade">
+<option value="todos">Origem</option>
+<option value="br">Brasil</option>
+<option value="importado">Importado</option>
+</select>
+
+</div>
+
+<button onclick="buscar()">Buscar</button>
+
+</div>
+
+<div class="resultados" id="resultados"></div>
+
+</div>
+
+<script>
+
+const produtos = [
+
+/* MOUSE GAMER */
+
+{nome:"Mouse Gamer RGB Pro", categoria:"eletronico", preco:120, qualidade:4.6, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Mouse Gamer RGB X900", categoria:"eletronico", preco:95, qualidade:4.3, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Mouse Gamer RGB Elite", categoria:"eletronico", preco:150, qualidade:4.8, nacionalidade:"importado", loja:"Mercado Livre"},
+{nome:"Mouse Gamer RGB Speed", categoria:"eletronico", preco:80, qualidade:4.1, nacionalidade:"br", loja:"Shopee"},
+
+/* TECLADO */
+
+{nome:"Teclado Mecânico Gamer Pro", categoria:"eletronico", preco:320, qualidade:4.8, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Teclado Mecânico RGB X", categoria:"eletronico", preco:270, qualidade:4.5, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Teclado Gamer Compact", categoria:"eletronico", preco:210, qualidade:4.2, nacionalidade:"br", loja:"Mercado Livre"},
+
+/* HEADSET */
+
+{nome:"Headset Gamer Surround", categoria:"eletronico", preco:210, qualidade:4.4, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Headset Gamer Pro Sound", categoria:"eletronico", preco:250, qualidade:4.6, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Headset Gamer Básico", categoria:"eletronico", preco:140, qualidade:4.0, nacionalidade:"br", loja:"Mercado Livre"},
+
+/* MONITOR */
+
+{nome:"Monitor 24 Polegadas Gamer", categoria:"eletronico", preco:950, qualidade:4.7, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Monitor 24 Full HD", categoria:"eletronico", preco:820, qualidade:4.4, nacionalidade:"importado", loja:"Mercado Livre"},
+{nome:"Monitor Gamer 165hz", categoria:"eletronico", preco:1200, qualidade:4.9, nacionalidade:"importado", loja:"Amazon"},
+
+/* CASA */
+
+{nome:"Garrafa Térmica Inox 1L", categoria:"casa", preco:89, qualidade:4.5, nacionalidade:"br", loja:"Amazon"},
+{nome:"Garrafa Térmica Premium", categoria:"casa", preco:120, qualidade:4.7, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Garrafa Térmica Econômica", categoria:"casa", preco:45, qualidade:3.9, nacionalidade:"br", loja:"Mercado Livre"},
+
+{nome:"Liquidificador Turbo 900W", categoria:"casa", preco:140, qualidade:4.3, nacionalidade:"br", loja:"Amazon"},
+{nome:"Liquidificador Power Mix", categoria:"casa", preco:180, qualidade:4.6, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Liquidificador Básico", categoria:"casa", preco:110, qualidade:4.0, nacionalidade:"br", loja:"Mercado Livre"},
+
+{nome:"Air Fryer Digital 5L", categoria:"casa", preco:350, qualidade:4.7, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Air Fryer Compact", categoria:"casa", preco:280, qualidade:4.3, nacionalidade:"br", loja:"Mercado Livre"},
+
+/* ROUPAS */
+
+{nome:"Camiseta Básica Algodão", categoria:"roupa", preco:45, qualidade:4.1, nacionalidade:"br", loja:"Shopee"},
+{nome:"Camiseta Premium", categoria:"roupa", preco:70, qualidade:4.5, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Camiseta Casual Slim", categoria:"roupa", preco:55, qualidade:4.2, nacionalidade:"br", loja:"Mercado Livre"},
+
+{nome:"Jaqueta Masculina Inverno", categoria:"roupa", preco:180, qualidade:4.3, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Jaqueta Casual", categoria:"roupa", preco:150, qualidade:4.1, nacionalidade:"br", loja:"Shopee"},
+
+{nome:"Tênis Esportivo Runner", categoria:"roupa", preco:260, qualidade:4.6, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Tênis Esportivo Confort", categoria:"roupa", preco:210, qualidade:4.3, nacionalidade:"br", loja:"Mercado Livre"}
+
+]
+
+function buscar(){
+
+let texto = document.getElementById("busca").value.toLowerCase()
+let categoria = document.getElementById("categoria").value
+let precoFiltro = document.getElementById("preco").value
+let qualidadeFiltro = document.getElementById("qualidade").value
+let nacionalidade = document.getElementById("nacionalidade").value
+
+let resultados = produtos.filter(p => {
+
+if(texto && !p.nome.toLowerCase().includes(texto)) return false
+if(categoria != "todos" && p.categoria != categoria) return false
+if(qualidadeFiltro != "todos" && p.qualidade < qualidadeFiltro) return false
+if(nacionalidade != "todos" && p.nacionalidade != nacionalidade) return false
+
+return true
+
+})
+
+if(precoFiltro == "baixo"){
+resultados.sort((a,b)=> a.preco - b.preco)
+}
+
+if(precoFiltro == "alto"){
+resultados.sort((a,b)=> b.preco - a.preco)
+}
+
+mostrar(resultados)
+
+}
+
+function mostrar(lista){
+
+let div = document.getElementById("resultados")
+
+if(lista.length == 0){
+div.innerHTML = "Nenhum produto encontrado."
+return
+}
+
+div.innerHTML=""
+
+lista.forEach(p => {
+
+div.innerHTML += `
+<div class="produto">
+
+<div class="nome">${p.nome}</div>
+
+<div class="categoria">${p.categoria}</div>
+
+⭐ ${p.qualidade}
+
+<div class="preco">R$ ${p.preco}</div>
+
+<div class="loja">Loja: ${p.loja}</div>
+
+</div>
+`
+
+})
+
+}
+
+</script>
+
+</body>
+</html>
