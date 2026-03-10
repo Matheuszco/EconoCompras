@@ -14,17 +14,34 @@ font-family:Arial;
 }
 
 body{
-background:#f2f4f8;
+background:#f4f4f4;
 }
 
-header{
-background:#4f46e5;
-color:white;
+/* TOPO */
+
+.topo{
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+
+background: linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
+
 padding:20px;
-text-align:center;
-font-size:22px;
-font-weight:bold;
+color:white;
+
 }
+
+.logo{
+width:60px;
+}
+
+.topo h1{
+font-size:26px;
+}
+
+/* CONTAINER */
 
 .container{
 max-width:1000px;
@@ -32,89 +49,148 @@ margin:auto;
 padding:30px;
 }
 
+/* CAIXA DE BUSCA */
+
 .search-box{
+
 background:white;
+
 padding:20px;
+
 border-radius:10px;
+
 box-shadow:0 4px 10px rgba(0,0,0,0.08);
+
 margin-bottom:25px;
+
 }
 
 input{
+
 width:100%;
+
 padding:12px;
+
 margin-bottom:15px;
+
 border-radius:6px;
+
 border:1px solid #ccc;
+
 font-size:16px;
+
 }
 
 .filters{
+
 display:flex;
+
 gap:10px;
+
 flex-wrap:wrap;
+
 margin-bottom:10px;
+
 }
 
 select{
+
 flex:1;
+
 padding:10px;
+
 border-radius:6px;
+
 border:1px solid #ccc;
+
 }
+
+/* BOTÃO */
 
 button{
+
 width:100%;
+
 padding:12px;
-background:#4f46e5;
+
+background: linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
+
 color:white;
+
 border:none;
+
 border-radius:6px;
+
 font-size:16px;
+
 cursor:pointer;
+
 }
 
-button:hover{
-background:#3730a3;
-}
+/* RESULTADOS */
 
 .resultados{
+
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
 gap:15px;
+
 }
 
 .produto{
+
 background:white;
+
 padding:15px;
+
 border-radius:10px;
+
 box-shadow:0 3px 8px rgba(0,0,0,0.08);
+
 transition:0.2s;
+
 }
 
 .produto:hover{
+
 transform:translateY(-4px);
+
 }
 
 .nome{
+
 font-weight:bold;
+
 margin-bottom:5px;
-}
 
-.preco{
-color:#16a34a;
-font-weight:bold;
-margin-top:5px;
-}
-
-.loja{
-font-size:14px;
-color:#555;
 }
 
 .categoria{
+
 font-size:13px;
+
 color:#777;
+
+}
+
+.preco{
+
+color:#e11d48;
+
+font-weight:bold;
+
+margin-top:5px;
+
+}
+
+.loja{
+
+font-size:14px;
+
+color:#555;
+
 }
 
 </style>
@@ -122,8 +198,12 @@ color:#777;
 
 <body>
 
-<header>
-EconoCompras
+<header class="topo">
+
+<img src="logo.png" class="logo">
+
+<h1>EconoCompras</h1>
+
 </header>
 
 <div class="container">
@@ -173,52 +253,30 @@ EconoCompras
 
 const produtos = [
 
-/* MOUSE GAMER */
-
 {nome:"Mouse Gamer RGB Pro", categoria:"eletronico", preco:120, qualidade:4.6, nacionalidade:"importado", loja:"Amazon"},
 {nome:"Mouse Gamer RGB X900", categoria:"eletronico", preco:95, qualidade:4.3, nacionalidade:"importado", loja:"Shopee"},
 {nome:"Mouse Gamer RGB Elite", categoria:"eletronico", preco:150, qualidade:4.8, nacionalidade:"importado", loja:"Mercado Livre"},
-{nome:"Mouse Gamer RGB Speed", categoria:"eletronico", preco:80, qualidade:4.1, nacionalidade:"br", loja:"Shopee"},
-
-/* TECLADO */
 
 {nome:"Teclado Mecânico Gamer Pro", categoria:"eletronico", preco:320, qualidade:4.8, nacionalidade:"importado", loja:"Amazon"},
 {nome:"Teclado Mecânico RGB X", categoria:"eletronico", preco:270, qualidade:4.5, nacionalidade:"importado", loja:"Shopee"},
-{nome:"Teclado Gamer Compact", categoria:"eletronico", preco:210, qualidade:4.2, nacionalidade:"br", loja:"Mercado Livre"},
-
-/* HEADSET */
 
 {nome:"Headset Gamer Surround", categoria:"eletronico", preco:210, qualidade:4.4, nacionalidade:"importado", loja:"Amazon"},
 {nome:"Headset Gamer Pro Sound", categoria:"eletronico", preco:250, qualidade:4.6, nacionalidade:"importado", loja:"Shopee"},
-{nome:"Headset Gamer Básico", categoria:"eletronico", preco:140, qualidade:4.0, nacionalidade:"br", loja:"Mercado Livre"},
 
-/* MONITOR */
-
-{nome:"Monitor 24 Polegadas Gamer", categoria:"eletronico", preco:950, qualidade:4.7, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Monitor 24 Gamer", categoria:"eletronico", preco:950, qualidade:4.7, nacionalidade:"importado", loja:"Amazon"},
 {nome:"Monitor 24 Full HD", categoria:"eletronico", preco:820, qualidade:4.4, nacionalidade:"importado", loja:"Mercado Livre"},
-{nome:"Monitor Gamer 165hz", categoria:"eletronico", preco:1200, qualidade:4.9, nacionalidade:"importado", loja:"Amazon"},
 
-/* CASA */
-
-{nome:"Garrafa Térmica Inox 1L", categoria:"casa", preco:89, qualidade:4.5, nacionalidade:"br", loja:"Amazon"},
+{nome:"Garrafa Térmica Inox", categoria:"casa", preco:89, qualidade:4.5, nacionalidade:"br", loja:"Amazon"},
 {nome:"Garrafa Térmica Premium", categoria:"casa", preco:120, qualidade:4.7, nacionalidade:"importado", loja:"Shopee"},
-{nome:"Garrafa Térmica Econômica", categoria:"casa", preco:45, qualidade:3.9, nacionalidade:"br", loja:"Mercado Livre"},
 
-{nome:"Liquidificador Turbo 900W", categoria:"casa", preco:140, qualidade:4.3, nacionalidade:"br", loja:"Amazon"},
+{nome:"Liquidificador Turbo", categoria:"casa", preco:140, qualidade:4.3, nacionalidade:"br", loja:"Amazon"},
 {nome:"Liquidificador Power Mix", categoria:"casa", preco:180, qualidade:4.6, nacionalidade:"importado", loja:"Shopee"},
-{nome:"Liquidificador Básico", categoria:"casa", preco:110, qualidade:4.0, nacionalidade:"br", loja:"Mercado Livre"},
 
-{nome:"Air Fryer Digital 5L", categoria:"casa", preco:350, qualidade:4.7, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Air Fryer Digital", categoria:"casa", preco:350, qualidade:4.7, nacionalidade:"importado", loja:"Amazon"},
 {nome:"Air Fryer Compact", categoria:"casa", preco:280, qualidade:4.3, nacionalidade:"br", loja:"Mercado Livre"},
 
-/* ROUPAS */
-
-{nome:"Camiseta Básica Algodão", categoria:"roupa", preco:45, qualidade:4.1, nacionalidade:"br", loja:"Shopee"},
+{nome:"Camiseta Básica", categoria:"roupa", preco:45, qualidade:4.1, nacionalidade:"br", loja:"Shopee"},
 {nome:"Camiseta Premium", categoria:"roupa", preco:70, qualidade:4.5, nacionalidade:"importado", loja:"Amazon"},
-{nome:"Camiseta Casual Slim", categoria:"roupa", preco:55, qualidade:4.2, nacionalidade:"br", loja:"Mercado Livre"},
-
-{nome:"Jaqueta Masculina Inverno", categoria:"roupa", preco:180, qualidade:4.3, nacionalidade:"importado", loja:"Amazon"},
-{nome:"Jaqueta Casual", categoria:"roupa", preco:150, qualidade:4.1, nacionalidade:"br", loja:"Shopee"},
 
 {nome:"Tênis Esportivo Runner", categoria:"roupa", preco:260, qualidade:4.6, nacionalidade:"importado", loja:"Amazon"},
 {nome:"Tênis Esportivo Confort", categoria:"roupa", preco:210, qualidade:4.3, nacionalidade:"br", loja:"Mercado Livre"}
