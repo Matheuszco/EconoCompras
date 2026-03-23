@@ -37,6 +37,24 @@ margin:auto;
 padding:30px;
 }
 
+.sobre{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.08);
+margin-bottom:25px;
+line-height:1.6;
+}
+
+.sobre h2{
+margin-bottom:10px;
+}
+
+.sobre h3{
+margin-top:15px;
+margin-bottom:5px;
+}
+
 .search-box{
 background:white;
 padding:20px;
@@ -191,7 +209,7 @@ lojas online e permite filtragem por categoria, preço e avaliação.
 
 </div>
 
-<div class="info" id="info"></div>
+<div class="info" id="info">Pesquise um produto para começar</div>
 
 <div class="resultados" id="resultados"></div>
 
@@ -230,11 +248,23 @@ const produtos = [
 function buscar(){
 
 let texto = document.getElementById("busca").value.toLowerCase()
+let categoria = document.getElementById("categoria").value
+let loja = document.getElementById("loja").value
+let precoFiltro = document.getElementById("preco").value
 
-if(texto.trim() === ""){
-document.getElementById("resultados").innerHTML = ""
-document.getElementById("info").innerHTML = "Pesquise um produto para começar"
+if(texto.trim()===""){
+document.getElementById("resultados").innerHTML=""
+document.getElementById("info").innerHTML="Pesquise um produto para começar"
 return
+}
+
+let resultados = produtos.filter(p=>{
+
+if(!p.nome.toLowerCase().includes(texto)) return false
+if(categoria!="todos" && p.categoria!=categoria) return false
+if(loja!="todas" && p.loja!=loja) return false
+
+return true
 
 })
 
@@ -288,9 +318,6 @@ div.innerHTML+=`
 })
 
 }
-
-document.getElementById("resultados").innerHTML = "";
-document.getElementById("info").innerHTML = "Pesquise um produto para começar";
 
 </script>
 
