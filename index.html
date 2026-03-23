@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -17,6 +18,8 @@ body{
 background:#f4f4f4;
 }
 
+/* TOPO */
+
 .topo{
 display:flex;
 align-items:center;
@@ -31,11 +34,15 @@ color:white;
 width:55px;
 }
 
+/* CONTAINER */
+
 .container{
 max-width:1100px;
 margin:auto;
 padding:30px;
 }
+
+/* BUSCA */
 
 .search-box{
 background:white;
@@ -67,10 +74,14 @@ border-radius:6px;
 border:1px solid #ccc;
 }
 
+/* INFO */
+
 .info{
 margin:20px 0;
 font-weight:bold;
 }
+
+/* RESULTADOS */
 
 .resultados{
 display:grid;
@@ -97,6 +108,8 @@ object-fit:contain;
 margin-bottom:10px;
 }
 
+/* TEXTO */
+
 .nome{
 font-weight:bold;
 margin-bottom:5px;
@@ -108,6 +121,8 @@ font-weight:bold;
 font-size:18px;
 margin-top:6px;
 }
+
+/* TAGS */
 
 .tag{
 font-size:12px;
@@ -130,16 +145,23 @@ background:#f59e0b;
 background:#3b82f6;
 }
 
+/* BOTÃO */
+
 .botao{
 margin-top:10px;
 display:block;
 text-align:center;
-padding:8px;
+padding:10px;
 background:#5a2fd8;
 color:white;
 border-radius:6px;
 text-decoration:none;
-font-size:14px;
+font-weight:bold;
+transition:0.2s;
+}
+
+.botao:hover{
+background:#4322a8;
 }
 
 </style>
@@ -201,7 +223,8 @@ categoria:"eletronico",
 preco:120,
 qualidade:4.6,
 loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png"
+img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png",
+link:"https://www.amazon.com"
 },
 
 {
@@ -210,7 +233,8 @@ categoria:"eletronico",
 preco:95,
 qualidade:4.3,
 loja:"Shopee",
-img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png"
+img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png",
+link:"https://shopee.com.br"
 },
 
 {
@@ -219,7 +243,8 @@ categoria:"eletronico",
 preco:270,
 qualidade:4.5,
 loja:"Shopee",
-img:"https://cdn-icons-png.flaticon.com/512/686/686589.png"
+img:"https://cdn-icons-png.flaticon.com/512/686/686589.png",
+link:"https://shopee.com.br"
 },
 
 {
@@ -228,7 +253,8 @@ categoria:"eletronico",
 preco:210,
 qualidade:4.4,
 loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/1041/1041916.png"
+img:"https://cdn-icons-png.flaticon.com/512/1041/1041916.png",
+link:"https://www.amazon.com"
 },
 
 {
@@ -237,7 +263,8 @@ categoria:"eletronico",
 preco:950,
 qualidade:4.7,
 loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/3474/3474360.png"
+img:"https://cdn-icons-png.flaticon.com/512/3474/3474360.png",
+link:"https://www.amazon.com"
 },
 
 {
@@ -246,7 +273,8 @@ categoria:"casa",
 preco:350,
 qualidade:4.7,
 loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/1046/1046857.png"
+img:"https://cdn-icons-png.flaticon.com/512/1046/1046857.png",
+link:"https://www.amazon.com"
 },
 
 {
@@ -255,7 +283,8 @@ categoria:"casa",
 preco:140,
 qualidade:4.3,
 loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
+img:"https://cdn-icons-png.flaticon.com/512/1046/1046784.png",
+link:"https://www.amazon.com"
 },
 
 {
@@ -264,7 +293,8 @@ categoria:"casa",
 preco:180,
 qualidade:4.5,
 loja:"Magazine Luiza",
-img:"https://cdn-icons-png.flaticon.com/512/2935/2935390.png"
+img:"https://cdn-icons-png.flaticon.com/512/2935/2935390.png",
+link:"https://www.magazineluiza.com.br"
 },
 
 {
@@ -273,7 +303,8 @@ categoria:"casa",
 preco:89,
 qualidade:4.5,
 loja:"Shopee",
-img:"https://cdn-icons-png.flaticon.com/512/1046/1046796.png"
+img:"https://cdn-icons-png.flaticon.com/512/1046/1046796.png",
+link:"https://shopee.com.br"
 },
 
 {
@@ -282,7 +313,8 @@ categoria:"roupa",
 preco:45,
 qualidade:4.1,
 loja:"Shopee",
-img:"https://cdn-icons-png.flaticon.com/512/892/892458.png"
+img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
+link:"https://shopee.com.br"
 },
 
 {
@@ -291,7 +323,8 @@ categoria:"roupa",
 preco:70,
 qualidade:4.5,
 loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/892/892458.png"
+img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
+link:"https://www.amazon.com"
 },
 
 {
@@ -300,7 +333,8 @@ categoria:"roupa",
 preco:260,
 qualidade:4.6,
 loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/892/892458.png"
+img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
+link:"https://www.amazon.com"
 },
 
 {
@@ -309,7 +343,8 @@ categoria:"roupa",
 preco:210,
 qualidade:4.3,
 loja:"Mercado Livre",
-img:"https://cdn-icons-png.flaticon.com/512/892/892458.png"
+img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
+link:"https://www.mercadolivre.com.br"
 }
 
 ]
@@ -345,8 +380,8 @@ mostrar(resultados)
 
 function mostrar(lista){
 
-let div = document.getElementById("resultados")
-let info = document.getElementById("info")
+let div=document.getElementById("resultados")
+let info=document.getElementById("info")
 
 if(lista.length==0){
 div.innerHTML="Nenhum produto encontrado"
@@ -354,12 +389,11 @@ info.innerHTML=""
 return
 }
 
-let maisBarato = Math.min(...lista.map(p=>p.preco))
-let melhorAval = Math.max(...lista.map(p=>p.qualidade))
+info.innerHTML=lista.length+" resultados encontrados"
 
-let melhorCusto = lista.sort((a,b)=> (b.qualidade/b.preco)-(a.qualidade/a.preco))[0]
-
-info.innerHTML = lista.length + " resultados encontrados"
+let maisBarato=Math.min(...lista.map(p=>p.preco))
+let melhorAval=Math.max(...lista.map(p=>p.qualidade))
+let melhorCusto=[...lista].sort((a,b)=> (b.qualidade/b.preco)-(a.qualidade/a.preco))[0]
 
 div.innerHTML=""
 
@@ -385,7 +419,7 @@ div.innerHTML+=`
 
 ${tag}
 
-<img src="${p.img}">
+<img src="${p.img}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1828/1828843.png'">
 
 <div class="nome">${p.nome}</div>
 
@@ -395,7 +429,7 @@ ${tag}
 
 <div>Loja: ${p.loja}</div>
 
-<a class="botao">Ver oferta</a>
+<a href="${p.link}" target="_blank" class="botao">Ver oferta</a>
 
 </div>
 
@@ -411,3 +445,4 @@ buscar()
 
 </body>
 </html>
+```
