@@ -22,13 +22,13 @@ display:flex;
 align-items:center;
 justify-content:center;
 gap:15px;
-background: linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
+background:linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
 padding:20px;
 color:white;
 }
 
 .logo{
-width:60px;
+width:55px;
 }
 
 .container{
@@ -58,7 +58,6 @@ font-size:16px;
 display:flex;
 gap:10px;
 flex-wrap:wrap;
-margin-bottom:10px;
 }
 
 select{
@@ -68,26 +67,15 @@ border-radius:6px;
 border:1px solid #ccc;
 }
 
-button{
-width:100%;
-padding:12px;
-background: linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
-color:white;
-border:none;
-border-radius:6px;
-font-size:16px;
-cursor:pointer;
-}
-
 .info{
-margin:15px 0;
+margin:20px 0;
 font-weight:bold;
 }
 
 .resultados{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:15px;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
 }
 
 .produto{
@@ -95,6 +83,18 @@ background:white;
 padding:15px;
 border-radius:10px;
 box-shadow:0 3px 8px rgba(0,0,0,0.08);
+transition:0.2s;
+}
+
+.produto:hover{
+transform:translateY(-4px);
+}
+
+.produto img{
+width:100%;
+height:140px;
+object-fit:contain;
+margin-bottom:10px;
 }
 
 .nome{
@@ -105,12 +105,13 @@ margin-bottom:5px;
 .preco{
 color:#e11d48;
 font-weight:bold;
-margin-top:5px;
+font-size:18px;
+margin-top:6px;
 }
 
 .tag{
 font-size:12px;
-padding:3px 6px;
+padding:4px 6px;
 border-radius:5px;
 color:white;
 display:inline-block;
@@ -125,12 +126,20 @@ background:#22c55e;
 background:#f59e0b;
 }
 
-.sobre{
-background:white;
-padding:20px;
-margin-top:30px;
-border-radius:10px;
-box-shadow:0 3px 8px rgba(0,0,0,0.08);
+.custo{
+background:#3b82f6;
+}
+
+.botao{
+margin-top:10px;
+display:block;
+text-align:center;
+padding:8px;
+background:#5a2fd8;
+color:white;
+border-radius:6px;
+text-decoration:none;
+font-size:14px;
 }
 
 </style>
@@ -147,19 +156,18 @@ box-shadow:0 3px 8px rgba(0,0,0,0.08);
 
 <div class="search-box">
 
-<input type="text" id="busca" placeholder="Pesquisar produto...">
+<input type="text" id="busca" placeholder="Pesquisar produto..." onkeyup="buscar()">
 
 <div class="filters">
 
-<select id="categoria">
+<select id="categoria" onchange="buscar()">
 <option value="todos">Categoria</option>
 <option value="eletronico">Eletrônicos</option>
 <option value="casa">Casa</option>
 <option value="roupa">Roupas</option>
-<option value="celular">Celulares</option>
 </select>
 
-<select id="loja">
+<select id="loja" onchange="buscar()">
 <option value="todas">Loja</option>
 <option value="Amazon">Amazon</option>
 <option value="Shopee">Shopee</option>
@@ -167,7 +175,7 @@ box-shadow:0 3px 8px rgba(0,0,0,0.08);
 <option value="Magazine Luiza">Magazine Luiza</option>
 </select>
 
-<select id="preco">
+<select id="preco" onchange="buscar()">
 <option value="todos">Ordenar preço</option>
 <option value="baixo">Mais barato</option>
 <option value="alto">Mais caro</option>
@@ -175,35 +183,11 @@ box-shadow:0 3px 8px rgba(0,0,0,0.08);
 
 </div>
 
-<button onclick="buscar()">Buscar</button>
-
 </div>
 
 <div class="info" id="info"></div>
 
 <div class="resultados" id="resultados"></div>
-
-<div class="sobre">
-
-<h2>Sobre o EconoCompras</h2>
-
-<p>
-O EconoCompras é um protótipo de plataforma digital criado para ajudar consumidores
-a encontrar os melhores preços na internet.
-O sistema reúne produtos de diversas lojas online e permite filtragem por
-categoria, preço e avaliação.
-</p>
-
-<h3>Como funciona</h3>
-
-<p>
-1. O usuário pesquisa um produto.<br>
-2. O sistema analisa opções de diferentes lojas.<br>
-3. Os resultados são organizados por preço, avaliação e custo-benefício.<br>
-4. O consumidor pode escolher a melhor oferta disponível.
-</p>
-
-</div>
 
 </div>
 
@@ -211,33 +195,122 @@ categoria, preço e avaliação.
 
 const produtos = [
 
-{nome:"Mouse Gamer RGB Pro",categoria:"eletronico",preco:120,qualidade:4.6,loja:"Amazon"},
-{nome:"Mouse Gamer X900",categoria:"eletronico",preco:95,qualidade:4.3,loja:"Shopee"},
-{nome:"Mouse Gamer Elite",categoria:"eletronico",preco:150,qualidade:4.8,loja:"Mercado Livre"},
+{
+nome:"Mouse Gamer RGB",
+categoria:"eletronico",
+preco:120,
+qualidade:4.6,
+loja:"Amazon",
+img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png"
+},
 
-{nome:"Teclado Mecânico RGB",categoria:"eletronico",preco:270,qualidade:4.5,loja:"Shopee"},
-{nome:"Teclado Gamer Pro",categoria:"eletronico",preco:320,qualidade:4.8,loja:"Amazon"},
+{
+nome:"Mouse Gamer X900",
+categoria:"eletronico",
+preco:95,
+qualidade:4.3,
+loja:"Shopee",
+img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png"
+},
 
-{nome:"Headset Gamer Surround",categoria:"eletronico",preco:210,qualidade:4.4,loja:"Amazon"},
-{nome:"Headset Gamer Pro",categoria:"eletronico",preco:250,qualidade:4.6,loja:"Shopee"},
+{
+nome:"Teclado Mecânico RGB",
+categoria:"eletronico",
+preco:270,
+qualidade:4.5,
+loja:"Shopee",
+img:"https://cdn-icons-png.flaticon.com/512/686/686589.png"
+},
 
-{nome:"Monitor Gamer 24",categoria:"eletronico",preco:950,qualidade:4.7,loja:"Amazon"},
-{nome:"Monitor Full HD",categoria:"eletronico",preco:820,qualidade:4.4,loja:"Mercado Livre"},
+{
+nome:"Headset Gamer",
+categoria:"eletronico",
+preco:210,
+qualidade:4.4,
+loja:"Amazon",
+img:"https://cdn-icons-png.flaticon.com/512/1041/1041916.png"
+},
 
-{nome:"Air Fryer Digital",categoria:"casa",preco:350,qualidade:4.7,loja:"Amazon"},
-{nome:"Air Fryer Compact",categoria:"casa",preco:280,qualidade:4.3,loja:"Mercado Livre"},
+{
+nome:"Monitor Gamer 24",
+categoria:"eletronico",
+preco:950,
+qualidade:4.7,
+loja:"Amazon",
+img:"https://cdn-icons-png.flaticon.com/512/3474/3474360.png"
+},
 
-{nome:"Liquidificador Turbo",categoria:"casa",preco:140,qualidade:4.3,loja:"Amazon"},
-{nome:"Cafeteira Elétrica",categoria:"casa",preco:180,qualidade:4.5,loja:"Magazine Luiza"},
+{
+nome:"Air Fryer Digital",
+categoria:"casa",
+preco:350,
+qualidade:4.7,
+loja:"Amazon",
+img:"https://cdn-icons-png.flaticon.com/512/1046/1046857.png"
+},
 
-{nome:"Camiseta Básica",categoria:"roupa",preco:45,qualidade:4.1,loja:"Shopee"},
-{nome:"Camiseta Premium",categoria:"roupa",preco:70,qualidade:4.5,loja:"Amazon"},
+{
+nome:"Liquidificador Turbo",
+categoria:"casa",
+preco:140,
+qualidade:4.3,
+loja:"Amazon",
+img:"https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
+},
 
-{nome:"Tênis Runner",categoria:"roupa",preco:260,qualidade:4.6,loja:"Amazon"},
-{nome:"Tênis Confort",categoria:"roupa",preco:210,qualidade:4.3,loja:"Mercado Livre"},
+{
+nome:"Cafeteira Elétrica",
+categoria:"casa",
+preco:180,
+qualidade:4.5,
+loja:"Magazine Luiza",
+img:"https://cdn-icons-png.flaticon.com/512/2935/2935390.png"
+},
 
-{nome:"Smartphone X Pro",categoria:"celular",preco:2100,qualidade:4.7,loja:"Amazon"},
-{nome:"Smartphone Lite",categoria:"celular",preco:1600,qualidade:4.3,loja:"Magazine Luiza"}
+{
+nome:"Garrafa Térmica",
+categoria:"casa",
+preco:89,
+qualidade:4.5,
+loja:"Shopee",
+img:"https://cdn-icons-png.flaticon.com/512/1046/1046796.png"
+},
+
+{
+nome:"Camiseta Básica",
+categoria:"roupa",
+preco:45,
+qualidade:4.1,
+loja:"Shopee",
+img:"https://cdn-icons-png.flaticon.com/512/892/892458.png"
+},
+
+{
+nome:"Camiseta Premium",
+categoria:"roupa",
+preco:70,
+qualidade:4.5,
+loja:"Amazon",
+img:"https://cdn-icons-png.flaticon.com/512/892/892458.png"
+},
+
+{
+nome:"Tênis Runner",
+categoria:"roupa",
+preco:260,
+qualidade:4.6,
+loja:"Amazon",
+img:"https://cdn-icons-png.flaticon.com/512/892/892458.png"
+},
+
+{
+nome:"Tênis Confort",
+categoria:"roupa",
+preco:210,
+qualidade:4.3,
+loja:"Mercado Livre",
+img:"https://cdn-icons-png.flaticon.com/512/892/892458.png"
+}
 
 ]
 
@@ -272,8 +345,8 @@ mostrar(resultados)
 
 function mostrar(lista){
 
-let div=document.getElementById("resultados")
-let info=document.getElementById("info")
+let div = document.getElementById("resultados")
+let info = document.getElementById("info")
 
 if(lista.length==0){
 div.innerHTML="Nenhum produto encontrado"
@@ -281,10 +354,12 @@ info.innerHTML=""
 return
 }
 
-info.innerHTML=lista.length+" resultados encontrados"
+let maisBarato = Math.min(...lista.map(p=>p.preco))
+let melhorAval = Math.max(...lista.map(p=>p.qualidade))
 
-let maisBarato=Math.min(...lista.map(p=>p.preco))
-let melhorAvaliacao=Math.max(...lista.map(p=>p.qualidade))
+let melhorCusto = lista.sort((a,b)=> (b.qualidade/b.preco)-(a.qualidade/a.preco))[0]
+
+info.innerHTML = lista.length + " resultados encontrados"
 
 div.innerHTML=""
 
@@ -293,11 +368,15 @@ lista.forEach(p=>{
 let tag=""
 
 if(p.preco==maisBarato){
-tag=`<div class="tag barato">Mais barato</div>`
+tag='<div class="tag barato">Mais barato</div>'
 }
 
-if(p.qualidade==melhorAvaliacao){
-tag=`<div class="tag melhor">Melhor avaliado</div>`
+if(p.qualidade==melhorAval){
+tag='<div class="tag melhor">Melhor avaliado</div>'
+}
+
+if(p.nome==melhorCusto.nome){
+tag='<div class="tag custo">Melhor custo-benefício</div>'
 }
 
 div.innerHTML+=`
@@ -305,6 +384,8 @@ div.innerHTML+=`
 <div class="produto">
 
 ${tag}
+
+<img src="${p.img}">
 
 <div class="nome">${p.nome}</div>
 
@@ -314,6 +395,8 @@ ${tag}
 
 <div>Loja: ${p.loja}</div>
 
+<a class="botao">Ver oferta</a>
+
 </div>
 
 `
@@ -321,6 +404,8 @@ ${tag}
 })
 
 }
+
+buscar()
 
 </script>
 
