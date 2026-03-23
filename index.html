@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,8 +17,6 @@ body{
 background:#f4f4f4;
 }
 
-/* TOPO */
-
 .topo{
 display:flex;
 align-items:center;
@@ -34,15 +31,11 @@ color:white;
 width:55px;
 }
 
-/* CONTAINER */
-
 .container{
 max-width:1100px;
 margin:auto;
 padding:30px;
 }
-
-/* BUSCA */
 
 .search-box{
 background:white;
@@ -74,14 +67,10 @@ border-radius:6px;
 border:1px solid #ccc;
 }
 
-/* INFO */
-
 .info{
 margin:20px 0;
 font-weight:bold;
 }
-
-/* RESULTADOS */
 
 .resultados{
 display:grid;
@@ -108,8 +97,6 @@ object-fit:contain;
 margin-bottom:10px;
 }
 
-/* TEXTO */
-
 .nome{
 font-weight:bold;
 margin-bottom:5px;
@@ -121,8 +108,6 @@ font-weight:bold;
 font-size:18px;
 margin-top:6px;
 }
-
-/* TAGS */
 
 .tag{
 font-size:12px;
@@ -144,8 +129,6 @@ background:#f59e0b;
 .custo{
 background:#3b82f6;
 }
-
-/* BOTÃO */
 
 .botao{
 margin-top:10px;
@@ -234,7 +217,7 @@ preco:95,
 qualidade:4.3,
 loja:"Shopee",
 img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png",
-link:"https://shopee.com.br"
+link:"https://shopee.com"
 },
 
 {
@@ -244,7 +227,7 @@ preco:270,
 qualidade:4.5,
 loja:"Shopee",
 img:"https://cdn-icons-png.flaticon.com/512/686/686589.png",
-link:"https://shopee.com.br"
+link:"https://shopee.com"
 },
 
 {
@@ -304,7 +287,7 @@ preco:89,
 qualidade:4.5,
 loja:"Shopee",
 img:"https://cdn-icons-png.flaticon.com/512/1046/1046796.png",
-link:"https://shopee.com.br"
+link:"https://shopee.com"
 },
 
 {
@@ -314,7 +297,7 @@ preco:45,
 qualidade:4.1,
 loja:"Shopee",
 img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
-link:"https://shopee.com.br"
+link:"https://shopee.com"
 },
 
 {
@@ -344,7 +327,7 @@ preco:210,
 qualidade:4.3,
 loja:"Mercado Livre",
 img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
-link:"https://www.mercadolivre.com.br"
+link:"https://mercadolivre.com"
 }
 
 ]
@@ -380,8 +363,8 @@ mostrar(resultados)
 
 function mostrar(lista){
 
-let div=document.getElementById("resultados")
-let info=document.getElementById("info")
+let div = document.getElementById("resultados")
+let info = document.getElementById("info")
 
 if(lista.length==0){
 div.innerHTML="Nenhum produto encontrado"
@@ -389,11 +372,10 @@ info.innerHTML=""
 return
 }
 
-info.innerHTML=lista.length+" resultados encontrados"
+let maisBarato = Math.min(...lista.map(p=>p.preco))
+let melhorAval = Math.max(...lista.map(p=>p.qualidade))
 
-let maisBarato=Math.min(...lista.map(p=>p.preco))
-let melhorAval=Math.max(...lista.map(p=>p.qualidade))
-let melhorCusto=[...lista].sort((a,b)=> (b.qualidade/b.preco)-(a.qualidade/a.preco))[0]
+info.innerHTML = lista.length + " resultados encontrados"
 
 div.innerHTML=""
 
@@ -407,10 +389,6 @@ tag='<div class="tag barato">Mais barato</div>'
 
 if(p.qualidade==melhorAval){
 tag='<div class="tag melhor">Melhor avaliado</div>'
-}
-
-if(p.nome==melhorCusto.nome){
-tag='<div class="tag custo">Melhor custo-benefício</div>'
 }
 
 div.innerHTML+=`
@@ -445,4 +423,3 @@ buscar()
 
 </body>
 </html>
-```
