@@ -80,7 +80,7 @@ gap:18px;
 
 .produto{
 background:white;
-padding:15px;
+padding:18px;
 border-radius:10px;
 box-shadow:0 3px 8px rgba(0,0,0,0.08);
 transition:0.2s;
@@ -90,16 +90,10 @@ transition:0.2s;
 transform:translateY(-4px);
 }
 
-.produto img{
-width:100%;
-height:140px;
-object-fit:contain;
-margin-bottom:10px;
-}
-
 .nome{
 font-weight:bold;
-margin-bottom:5px;
+font-size:16px;
+margin-bottom:6px;
 }
 
 .preco{
@@ -109,29 +103,13 @@ font-size:18px;
 margin-top:6px;
 }
 
-.tag{
-font-size:12px;
-padding:4px 6px;
-border-radius:5px;
-color:white;
-display:inline-block;
-margin-bottom:5px;
-}
-
-.barato{
-background:#22c55e;
-}
-
-.melhor{
-background:#f59e0b;
-}
-
-.custo{
-background:#3b82f6;
+.loja{
+margin-top:5px;
+color:#555;
 }
 
 .botao{
-margin-top:10px;
+margin-top:12px;
 display:block;
 text-align:center;
 padding:10px;
@@ -153,7 +131,6 @@ background:#4322a8;
 <body>
 
 <header class="topo">
-<img src="logo.png" class="logo">
 <h1>EconoCompras</h1>
 </header>
 
@@ -170,6 +147,8 @@ background:#4322a8;
 <option value="eletronico">Eletrônicos</option>
 <option value="casa">Casa</option>
 <option value="roupa">Roupas</option>
+<option value="informatica">Informática</option>
+<option value="acessorios">Acessórios</option>
 </select>
 
 <select id="loja" onchange="buscar()">
@@ -200,135 +179,29 @@ background:#4322a8;
 
 const produtos = [
 
-{
-nome:"Mouse Gamer RGB",
-categoria:"eletronico",
-preco:120,
-qualidade:4.6,
-loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png",
-link:"https://www.amazon.com"
-},
+{nome:"Mouse Gamer RGB",categoria:"informatica",preco:120,qualidade:4.6,loja:"Amazon",link:"https://amazon.com"},
+{nome:"Mouse Sem Fio",categoria:"informatica",preco:80,qualidade:4.3,loja:"Shopee",link:"https://shopee.com"},
+{nome:"Teclado Mecânico RGB",categoria:"informatica",preco:270,qualidade:4.5,loja:"Amazon",link:"https://amazon.com"},
+{nome:"Teclado Simples USB",categoria:"informatica",preco:60,qualidade:4.0,loja:"Mercado Livre",link:"https://mercadolivre.com"},
+{nome:"Headset Gamer",categoria:"informatica",preco:210,qualidade:4.4,loja:"Amazon",link:"https://amazon.com"},
+{nome:"Monitor Gamer 24",categoria:"eletronico",preco:950,qualidade:4.7,loja:"Amazon",link:"https://amazon.com"},
+{nome:"Webcam HD",categoria:"informatica",preco:150,qualidade:4.3,loja:"Shopee",link:"https://shopee.com"},
 
-{
-nome:"Mouse Gamer X900",
-categoria:"eletronico",
-preco:95,
-qualidade:4.3,
-loja:"Shopee",
-img:"https://cdn-icons-png.flaticon.com/512/2920/2920244.png",
-link:"https://shopee.com"
-},
+{nome:"Air Fryer Digital",categoria:"casa",preco:350,qualidade:4.7,loja:"Amazon",link:"https://amazon.com"},
+{nome:"Liquidificador Turbo",categoria:"casa",preco:140,qualidade:4.3,loja:"Magazine Luiza",link:"https://magazineluiza.com.br"},
+{nome:"Cafeteira Elétrica",categoria:"casa",preco:180,qualidade:4.5,loja:"Magazine Luiza",link:"https://magazineluiza.com.br"},
+{nome:"Microondas 20L",categoria:"casa",preco:520,qualidade:4.4,loja:"Amazon",link:"https://amazon.com"},
+{nome:"Sanduicheira Grill",categoria:"casa",preco:110,qualidade:4.2,loja:"Shopee",link:"https://shopee.com"},
 
-{
-nome:"Teclado Mecânico RGB",
-categoria:"eletronico",
-preco:270,
-qualidade:4.5,
-loja:"Shopee",
-img:"https://cdn-icons-png.flaticon.com/512/686/686589.png",
-link:"https://shopee.com"
-},
+{nome:"Camiseta Básica",categoria:"roupa",preco:45,qualidade:4.1,loja:"Shopee",link:"https://shopee.com"},
+{nome:"Camiseta Premium",categoria:"roupa",preco:70,qualidade:4.5,loja:"Amazon",link:"https://amazon.com"},
+{nome:"Calça Jeans Masculina",categoria:"roupa",preco:120,qualidade:4.4,loja:"Mercado Livre",link:"https://mercadolivre.com"},
+{nome:"Tênis Esportivo",categoria:"roupa",preco:260,qualidade:4.6,loja:"Amazon",link:"https://amazon.com"},
 
-{
-nome:"Headset Gamer",
-categoria:"eletronico",
-preco:210,
-qualidade:4.4,
-loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/1041/1041916.png",
-link:"https://www.amazon.com"
-},
-
-{
-nome:"Monitor Gamer 24",
-categoria:"eletronico",
-preco:950,
-qualidade:4.7,
-loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/3474/3474360.png",
-link:"https://www.amazon.com"
-},
-
-{
-nome:"Air Fryer Digital",
-categoria:"casa",
-preco:350,
-qualidade:4.7,
-loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/1046/1046857.png",
-link:"https://www.amazon.com"
-},
-
-{
-nome:"Liquidificador Turbo",
-categoria:"casa",
-preco:140,
-qualidade:4.3,
-loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/1046/1046784.png",
-link:"https://www.amazon.com"
-},
-
-{
-nome:"Cafeteira Elétrica",
-categoria:"casa",
-preco:180,
-qualidade:4.5,
-loja:"Magazine Luiza",
-img:"https://cdn-icons-png.flaticon.com/512/2935/2935390.png",
-link:"https://www.magazineluiza.com.br"
-},
-
-{
-nome:"Garrafa Térmica",
-categoria:"casa",
-preco:89,
-qualidade:4.5,
-loja:"Shopee",
-img:"https://cdn-icons-png.flaticon.com/512/1046/1046796.png",
-link:"https://shopee.com"
-},
-
-{
-nome:"Camiseta Básica",
-categoria:"roupa",
-preco:45,
-qualidade:4.1,
-loja:"Shopee",
-img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
-link:"https://shopee.com"
-},
-
-{
-nome:"Camiseta Premium",
-categoria:"roupa",
-preco:70,
-qualidade:4.5,
-loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
-link:"https://www.amazon.com"
-},
-
-{
-nome:"Tênis Runner",
-categoria:"roupa",
-preco:260,
-qualidade:4.6,
-loja:"Amazon",
-img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
-link:"https://www.amazon.com"
-},
-
-{
-nome:"Tênis Confort",
-categoria:"roupa",
-preco:210,
-qualidade:4.3,
-loja:"Mercado Livre",
-img:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
-link:"https://mercadolivre.com"
-}
+{nome:"Relógio Digital",categoria:"acessorios",preco:90,qualidade:4.2,loja:"Shopee",link:"https://shopee.com"},
+{nome:"Mochila Escolar",categoria:"acessorios",preco:130,qualidade:4.5,loja:"Amazon",link:"https://amazon.com"},
+{nome:"Fone Bluetooth",categoria:"eletronico",preco:160,qualidade:4.4,loja:"Mercado Livre",link:"https://mercadolivre.com"},
+{nome:"Powerbank 10000mAh",categoria:"eletronico",preco:120,qualidade:4.3,loja:"Shopee",link:"https://shopee.com"}
 
 ]
 
@@ -372,32 +245,15 @@ info.innerHTML=""
 return
 }
 
-let maisBarato = Math.min(...lista.map(p=>p.preco))
-let melhorAval = Math.max(...lista.map(p=>p.qualidade))
-
 info.innerHTML = lista.length + " resultados encontrados"
 
 div.innerHTML=""
 
 lista.forEach(p=>{
 
-let tag=""
-
-if(p.preco==maisBarato){
-tag='<div class="tag barato">Mais barato</div>'
-}
-
-if(p.qualidade==melhorAval){
-tag='<div class="tag melhor">Melhor avaliado</div>'
-}
-
 div.innerHTML+=`
 
 <div class="produto">
-
-${tag}
-
-<img src="${p.img}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1828/1828843.png'">
 
 <div class="nome">${p.nome}</div>
 
@@ -405,7 +261,7 @@ ${tag}
 
 <div class="preco">R$ ${p.preco}</div>
 
-<div>Loja: ${p.loja}</div>
+<div class="loja">Loja: ${p.loja}</div>
 
 <a href="${p.link}" target="_blank" class="botao">Ver oferta</a>
 
