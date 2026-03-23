@@ -208,17 +208,11 @@ const produtos = [
 function buscar(){
 
 let texto = document.getElementById("busca").value.toLowerCase()
-let categoria = document.getElementById("categoria").value
-let loja = document.getElementById("loja").value
-let precoFiltro = document.getElementById("preco").value
 
-let resultados = produtos.filter(p=>{
-
-if(texto && !p.nome.toLowerCase().includes(texto)) return false
-if(categoria!="todos" && p.categoria!=categoria) return false
-if(loja!="todas" && p.loja!=loja) return false
-
-return true
+if(texto.trim() === ""){
+document.getElementById("resultados").innerHTML = ""
+document.getElementById("info").innerHTML = "Pesquise um produto para começar"
+return
 
 })
 
