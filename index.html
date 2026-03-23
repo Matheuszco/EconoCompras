@@ -17,180 +17,120 @@ body{
 background:#f4f4f4;
 }
 
-/* TOPO */
-
 .topo{
-
 display:flex;
 align-items:center;
 justify-content:center;
 gap:15px;
-
 background: linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
-
 padding:20px;
 color:white;
-
 }
 
 .logo{
 width:60px;
 }
 
-.topo h1{
-font-size:26px;
-}
-
-/* CONTAINER */
-
 .container{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
 padding:30px;
 }
 
-/* CAIXA DE BUSCA */
-
 .search-box{
-
 background:white;
-
 padding:20px;
-
 border-radius:10px;
-
 box-shadow:0 4px 10px rgba(0,0,0,0.08);
-
 margin-bottom:25px;
-
 }
 
 input{
-
 width:100%;
-
 padding:12px;
-
 margin-bottom:15px;
-
 border-radius:6px;
-
 border:1px solid #ccc;
-
 font-size:16px;
-
 }
 
 .filters{
-
 display:flex;
-
 gap:10px;
-
 flex-wrap:wrap;
-
 margin-bottom:10px;
-
 }
 
 select{
-
 flex:1;
-
 padding:10px;
-
 border-radius:6px;
-
 border:1px solid #ccc;
-
 }
-
-/* BOTÃO */
 
 button{
-
 width:100%;
-
 padding:12px;
-
 background: linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
-
 color:white;
-
 border:none;
-
 border-radius:6px;
-
 font-size:16px;
-
 cursor:pointer;
-
 }
 
-/* RESULTADOS */
+.info{
+margin:15px 0;
+font-weight:bold;
+}
 
 .resultados{
-
 display:grid;
-
 grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-
 gap:15px;
-
 }
 
 .produto{
-
 background:white;
-
 padding:15px;
-
 border-radius:10px;
-
 box-shadow:0 3px 8px rgba(0,0,0,0.08);
-
-transition:0.2s;
-
-}
-
-.produto:hover{
-
-transform:translateY(-4px);
-
 }
 
 .nome{
-
 font-weight:bold;
-
 margin-bottom:5px;
-
-}
-
-.categoria{
-
-font-size:13px;
-
-color:#777;
-
 }
 
 .preco{
-
 color:#e11d48;
-
 font-weight:bold;
-
 margin-top:5px;
-
 }
 
-.loja{
+.tag{
+font-size:12px;
+padding:3px 6px;
+border-radius:5px;
+color:white;
+display:inline-block;
+margin-bottom:5px;
+}
 
-font-size:14px;
+.barato{
+background:#22c55e;
+}
 
-color:#555;
+.melhor{
+background:#f59e0b;
+}
 
+.sobre{
+background:white;
+padding:20px;
+margin-top:30px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.08);
 }
 
 </style>
@@ -199,11 +139,8 @@ color:#555;
 <body>
 
 <header class="topo">
-
 <img src="logo.png" class="logo">
-
 <h1>EconoCompras</h1>
-
 </header>
 
 <div class="container">
@@ -219,6 +156,15 @@ color:#555;
 <option value="eletronico">Eletrônicos</option>
 <option value="casa">Casa</option>
 <option value="roupa">Roupas</option>
+<option value="celular">Celulares</option>
+</select>
+
+<select id="loja">
+<option value="todas">Loja</option>
+<option value="Amazon">Amazon</option>
+<option value="Shopee">Shopee</option>
+<option value="Mercado Livre">Mercado Livre</option>
+<option value="Magazine Luiza">Magazine Luiza</option>
 </select>
 
 <select id="preco">
@@ -227,25 +173,37 @@ color:#555;
 <option value="alto">Mais caro</option>
 </select>
 
-<select id="qualidade">
-<option value="todos">Qualidade</option>
-<option value="4">4 estrelas ou mais</option>
-<option value="3">3 estrelas ou mais</option>
-</select>
-
-<select id="nacionalidade">
-<option value="todos">Origem</option>
-<option value="br">Brasil</option>
-<option value="importado">Importado</option>
-</select>
-
 </div>
 
 <button onclick="buscar()">Buscar</button>
 
 </div>
 
+<div class="info" id="info"></div>
+
 <div class="resultados" id="resultados"></div>
+
+<div class="sobre">
+
+<h2>Sobre o EconoCompras</h2>
+
+<p>
+O EconoCompras é um protótipo de plataforma digital criado para ajudar consumidores
+a encontrar os melhores preços na internet.
+O sistema reúne produtos de diversas lojas online e permite filtragem por
+categoria, preço e avaliação.
+</p>
+
+<h3>Como funciona</h3>
+
+<p>
+1. O usuário pesquisa um produto.<br>
+2. O sistema analisa opções de diferentes lojas.<br>
+3. Os resultados são organizados por preço, avaliação e custo-benefício.<br>
+4. O consumidor pode escolher a melhor oferta disponível.
+</p>
+
+</div>
 
 </div>
 
@@ -253,33 +211,33 @@ color:#555;
 
 const produtos = [
 
-{nome:"Mouse Gamer RGB Pro", categoria:"eletronico", preco:120, qualidade:4.6, nacionalidade:"importado", loja:"Amazon"},
-{nome:"Mouse Gamer RGB X900", categoria:"eletronico", preco:95, qualidade:4.3, nacionalidade:"importado", loja:"Shopee"},
-{nome:"Mouse Gamer RGB Elite", categoria:"eletronico", preco:150, qualidade:4.8, nacionalidade:"importado", loja:"Mercado Livre"},
+{nome:"Mouse Gamer RGB Pro",categoria:"eletronico",preco:120,qualidade:4.6,loja:"Amazon"},
+{nome:"Mouse Gamer X900",categoria:"eletronico",preco:95,qualidade:4.3,loja:"Shopee"},
+{nome:"Mouse Gamer Elite",categoria:"eletronico",preco:150,qualidade:4.8,loja:"Mercado Livre"},
 
-{nome:"Teclado Mecânico Gamer Pro", categoria:"eletronico", preco:320, qualidade:4.8, nacionalidade:"importado", loja:"Amazon"},
-{nome:"Teclado Mecânico RGB X", categoria:"eletronico", preco:270, qualidade:4.5, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Teclado Mecânico RGB",categoria:"eletronico",preco:270,qualidade:4.5,loja:"Shopee"},
+{nome:"Teclado Gamer Pro",categoria:"eletronico",preco:320,qualidade:4.8,loja:"Amazon"},
 
-{nome:"Headset Gamer Surround", categoria:"eletronico", preco:210, qualidade:4.4, nacionalidade:"importado", loja:"Amazon"},
-{nome:"Headset Gamer Pro Sound", categoria:"eletronico", preco:250, qualidade:4.6, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Headset Gamer Surround",categoria:"eletronico",preco:210,qualidade:4.4,loja:"Amazon"},
+{nome:"Headset Gamer Pro",categoria:"eletronico",preco:250,qualidade:4.6,loja:"Shopee"},
 
-{nome:"Monitor 24 Gamer", categoria:"eletronico", preco:950, qualidade:4.7, nacionalidade:"importado", loja:"Amazon"},
-{nome:"Monitor 24 Full HD", categoria:"eletronico", preco:820, qualidade:4.4, nacionalidade:"importado", loja:"Mercado Livre"},
+{nome:"Monitor Gamer 24",categoria:"eletronico",preco:950,qualidade:4.7,loja:"Amazon"},
+{nome:"Monitor Full HD",categoria:"eletronico",preco:820,qualidade:4.4,loja:"Mercado Livre"},
 
-{nome:"Garrafa Térmica Inox", categoria:"casa", preco:89, qualidade:4.5, nacionalidade:"br", loja:"Amazon"},
-{nome:"Garrafa Térmica Premium", categoria:"casa", preco:120, qualidade:4.7, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Air Fryer Digital",categoria:"casa",preco:350,qualidade:4.7,loja:"Amazon"},
+{nome:"Air Fryer Compact",categoria:"casa",preco:280,qualidade:4.3,loja:"Mercado Livre"},
 
-{nome:"Liquidificador Turbo", categoria:"casa", preco:140, qualidade:4.3, nacionalidade:"br", loja:"Amazon"},
-{nome:"Liquidificador Power Mix", categoria:"casa", preco:180, qualidade:4.6, nacionalidade:"importado", loja:"Shopee"},
+{nome:"Liquidificador Turbo",categoria:"casa",preco:140,qualidade:4.3,loja:"Amazon"},
+{nome:"Cafeteira Elétrica",categoria:"casa",preco:180,qualidade:4.5,loja:"Magazine Luiza"},
 
-{nome:"Air Fryer Digital", categoria:"casa", preco:350, qualidade:4.7, nacionalidade:"importado", loja:"Amazon"},
-{nome:"Air Fryer Compact", categoria:"casa", preco:280, qualidade:4.3, nacionalidade:"br", loja:"Mercado Livre"},
+{nome:"Camiseta Básica",categoria:"roupa",preco:45,qualidade:4.1,loja:"Shopee"},
+{nome:"Camiseta Premium",categoria:"roupa",preco:70,qualidade:4.5,loja:"Amazon"},
 
-{nome:"Camiseta Básica", categoria:"roupa", preco:45, qualidade:4.1, nacionalidade:"br", loja:"Shopee"},
-{nome:"Camiseta Premium", categoria:"roupa", preco:70, qualidade:4.5, nacionalidade:"importado", loja:"Amazon"},
+{nome:"Tênis Runner",categoria:"roupa",preco:260,qualidade:4.6,loja:"Amazon"},
+{nome:"Tênis Confort",categoria:"roupa",preco:210,qualidade:4.3,loja:"Mercado Livre"},
 
-{nome:"Tênis Esportivo Runner", categoria:"roupa", preco:260, qualidade:4.6, nacionalidade:"importado", loja:"Amazon"},
-{nome:"Tênis Esportivo Confort", categoria:"roupa", preco:210, qualidade:4.3, nacionalidade:"br", loja:"Mercado Livre"}
+{nome:"Smartphone X Pro",categoria:"celular",preco:2100,qualidade:4.7,loja:"Amazon"},
+{nome:"Smartphone Lite",categoria:"celular",preco:1600,qualidade:4.3,loja:"Magazine Luiza"}
 
 ]
 
@@ -287,27 +245,25 @@ function buscar(){
 
 let texto = document.getElementById("busca").value.toLowerCase()
 let categoria = document.getElementById("categoria").value
+let loja = document.getElementById("loja").value
 let precoFiltro = document.getElementById("preco").value
-let qualidadeFiltro = document.getElementById("qualidade").value
-let nacionalidade = document.getElementById("nacionalidade").value
 
-let resultados = produtos.filter(p => {
+let resultados = produtos.filter(p=>{
 
 if(texto && !p.nome.toLowerCase().includes(texto)) return false
-if(categoria != "todos" && p.categoria != categoria) return false
-if(qualidadeFiltro != "todos" && p.qualidade < qualidadeFiltro) return false
-if(nacionalidade != "todos" && p.nacionalidade != nacionalidade) return false
+if(categoria!="todos" && p.categoria!=categoria) return false
+if(loja!="todas" && p.loja!=loja) return false
 
 return true
 
 })
 
-if(precoFiltro == "baixo"){
-resultados.sort((a,b)=> a.preco - b.preco)
+if(precoFiltro=="baixo"){
+resultados.sort((a,b)=>a.preco-b.preco)
 }
 
-if(precoFiltro == "alto"){
-resultados.sort((a,b)=> b.preco - a.preco)
+if(precoFiltro=="alto"){
+resultados.sort((a,b)=>b.preco-a.preco)
 }
 
 mostrar(resultados)
@@ -316,31 +272,50 @@ mostrar(resultados)
 
 function mostrar(lista){
 
-let div = document.getElementById("resultados")
+let div=document.getElementById("resultados")
+let info=document.getElementById("info")
 
-if(lista.length == 0){
-div.innerHTML = "Nenhum produto encontrado."
+if(lista.length==0){
+div.innerHTML="Nenhum produto encontrado"
+info.innerHTML=""
 return
 }
 
+info.innerHTML=lista.length+" resultados encontrados"
+
+let maisBarato=Math.min(...lista.map(p=>p.preco))
+let melhorAvaliacao=Math.max(...lista.map(p=>p.qualidade))
+
 div.innerHTML=""
 
-lista.forEach(p => {
+lista.forEach(p=>{
 
-div.innerHTML += `
+let tag=""
+
+if(p.preco==maisBarato){
+tag=`<div class="tag barato">Mais barato</div>`
+}
+
+if(p.qualidade==melhorAvaliacao){
+tag=`<div class="tag melhor">Melhor avaliado</div>`
+}
+
+div.innerHTML+=`
+
 <div class="produto">
 
-<div class="nome">${p.nome}</div>
+${tag}
 
-<div class="categoria">${p.categoria}</div>
+<div class="nome">${p.nome}</div>
 
 ⭐ ${p.qualidade}
 
 <div class="preco">R$ ${p.preco}</div>
 
-<div class="loja">Loja: ${p.loja}</div>
+<div>Loja: ${p.loja}</div>
 
 </div>
+
 `
 
 })
