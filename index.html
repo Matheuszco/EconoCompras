@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -87,6 +88,7 @@ body{
     box-shadow:0 3px 8px rgba(0,0,0,0.08);
     text-align:center;
     transition:0.2s;
+    position:relative;
 }
 
 .plano:hover{
@@ -105,11 +107,22 @@ body{
     margin:12px 0;
 }
 
+.preco-gratis{
+    font-size:26px;
+    font-weight:bold;
+    color:#555;
+    margin:12px 0;
+}
+
 .plano ul{
     list-style:none;
     text-align:left;
     margin:15px 0;
     line-height:1.8;
+}
+
+.plano li{
+    margin-bottom:3px;
 }
 
 .botao-plano{
@@ -129,6 +142,20 @@ body{
 
 .destaque{
     border:2px solid #ff7a00;
+}
+
+.destaque::before{
+    content:"MAIS POPULAR";
+    position:absolute;
+    top:-12px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ff7a00;
+    color:white;
+    padding:4px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
 }
 
 /* PESQUISA */
@@ -236,7 +263,6 @@ footer{
     font-size:14px;
 }
 
-
 /* RESPONSIVIDADE */
 
 @media(max-width:600px){
@@ -317,8 +343,32 @@ de preços, avaliações e opções de compra.
 
 <h2>Planos EconoCompras</h2>
 
-
 <div class="lista-planos">
+
+
+<!-- FREE -->
+
+<div class="plano">
+
+<h3>Plano Free</h3>
+
+<div class="preco-gratis">
+R$ 0/mês
+</div>
+
+<ul>
+<li>✓ 10 pesquisas por dia</li>
+<li>✓ Comparação básica de preços</li>
+<li>✓ Acesso às ofertas</li>
+<li>✓ Acesso às lojas</li>
+<li>✓ Visualização das avaliações</li>
+</ul>
+
+<a href="#" class="botao-plano">
+Começar grátis
+</a>
+
+</div>
 
 
 <!-- BÁSICO -->
@@ -332,9 +382,12 @@ R$ 12,90/mês
 </div>
 
 <ul>
-<li>✓ Comparação de preços</li>
+<li>✓ Pesquisas ilimitadas</li>
 <li>✓ Filtros avançados</li>
+<li>✓ Comparação entre lojas</li>
 <li>✓ Histórico de preços</li>
+<li>✓ Produtos favoritos</li>
+<li>✓ Variação de preços</li>
 </ul>
 
 <a href="#" class="botao-plano">
@@ -355,10 +408,13 @@ R$ 22,90/mês
 </div>
 
 <ul>
-<li>✓ Tudo do Plano Básico</li>
+<li>✓ Tudo do Básico</li>
 <li>✓ Alertas de queda de preço</li>
-<li>✓ Comparação de até 10 lojas</li>
 <li>✓ Análise de custo-benefício</li>
+<li>✓ Comparação entre mais lojas</li>
+<li>✓ Histórico completo de preços</li>
+<li>✓ Acompanhamento de produtos</li>
+<li>✓ Sugestões de melhores ofertas</li>
 </ul>
 
 <a href="#" class="botao-plano">
@@ -380,10 +436,12 @@ R$ 34,90/mês
 
 <ul>
 <li>✓ Tudo do Intermediário</li>
-<li>✓ Comparação ilimitada</li>
 <li>✓ Alertas personalizados</li>
-<li>✓ Histórico completo</li>
-<li>✓ Análise de confiabilidade das lojas</li>
+<li>✓ Análise detalhada de produtos</li>
+<li>✓ Avaliação de confiabilidade das lojas</li>
+<li>✓ Relatórios de comparação</li>
+<li>✓ Evolução dos preços</li>
+<li>✓ Destaque das melhores oportunidades</li>
 </ul>
 
 <a href="#" class="botao-plano">
@@ -508,7 +566,7 @@ Pesquise um produto para começar
 
 <footer>
 
-EconoCompras © 2026  
+EconoCompras © 2026
 <br>
 Protótipo desenvolvido para projeto acadêmico.
 
@@ -522,7 +580,6 @@ Protótipo desenvolvido para projeto acadêmico.
 
 const produtos = [
 
-
 {
 nome:"Mouse Gamer RGB",
 categoria:"informatica",
@@ -531,7 +588,6 @@ qualidade:4.6,
 loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
-
 
 {
 nome:"Mouse Sem Fio",
@@ -542,7 +598,6 @@ loja:"Shopee",
 link:"https://shopee.com.br/"
 },
 
-
 {
 nome:"Teclado Mecânico RGB",
 categoria:"informatica",
@@ -551,7 +606,6 @@ qualidade:4.5,
 loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
-
 
 {
 nome:"Teclado Simples USB",
@@ -562,7 +616,6 @@ loja:"Mercado Livre",
 link:"https://www.mercadolivre.com.br/"
 },
 
-
 {
 nome:"Headset Gamer",
 categoria:"informatica",
@@ -571,7 +624,6 @@ qualidade:4.4,
 loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
-
 
 {
 nome:"Monitor Gamer 24",
@@ -582,7 +634,6 @@ loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
 
-
 {
 nome:"Webcam HD",
 categoria:"informatica",
@@ -591,7 +642,6 @@ qualidade:4.3,
 loja:"Shopee",
 link:"https://shopee.com.br/"
 },
-
 
 {
 nome:"Air Fryer Digital",
@@ -602,7 +652,6 @@ loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
 
-
 {
 nome:"Liquidificador Turbo",
 categoria:"casa",
@@ -611,7 +660,6 @@ qualidade:4.3,
 loja:"Magazine Luiza",
 link:"https://www.magazineluiza.com.br/"
 },
-
 
 {
 nome:"Cafeteira Elétrica",
@@ -622,7 +670,6 @@ loja:"Magazine Luiza",
 link:"https://www.magazineluiza.com.br/"
 },
 
-
 {
 nome:"Microondas 20L",
 categoria:"casa",
@@ -631,7 +678,6 @@ qualidade:4.4,
 loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
-
 
 {
 nome:"Sanduicheira Grill",
@@ -642,7 +688,6 @@ loja:"Shopee",
 link:"https://shopee.com.br/"
 },
 
-
 {
 nome:"Camiseta Básica",
 categoria:"roupa",
@@ -651,7 +696,6 @@ qualidade:4.1,
 loja:"Shopee",
 link:"https://shopee.com.br/"
 },
-
 
 {
 nome:"Camiseta Premium",
@@ -662,7 +706,6 @@ loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
 
-
 {
 nome:"Calça Jeans Masculina",
 categoria:"roupa",
@@ -671,7 +714,6 @@ qualidade:4.4,
 loja:"Mercado Livre",
 link:"https://www.mercadolivre.com.br/"
 },
-
 
 {
 nome:"Tênis Esportivo",
@@ -682,7 +724,6 @@ loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
 
-
 {
 nome:"Relógio Digital",
 categoria:"acessorios",
@@ -691,7 +732,6 @@ qualidade:4.2,
 loja:"Shopee",
 link:"https://shopee.com.br/"
 },
-
 
 {
 nome:"Mochila Escolar",
@@ -702,7 +742,6 @@ loja:"Amazon",
 link:"https://www.amazon.com.br/"
 },
 
-
 {
 nome:"Fone Bluetooth",
 categoria:"eletronico",
@@ -711,7 +750,6 @@ qualidade:4.4,
 loja:"Mercado Livre",
 link:"https://www.mercadolivre.com.br/"
 },
-
 
 {
 nome:"Powerbank 10000mAh",
@@ -722,7 +760,6 @@ loja:"Shopee",
 link:"https://shopee.com.br/"
 }
 
-
 ];
 
 
@@ -730,18 +767,14 @@ link:"https://shopee.com.br/"
 
 function buscar(){
 
-
 let texto =
 document.getElementById("busca").value.toLowerCase();
-
 
 let categoria =
 document.getElementById("categoria").value;
 
-
 let loja =
 document.getElementById("loja").value;
-
 
 let precoFiltro =
 document.getElementById("preco").value;
@@ -761,18 +794,14 @@ return;
 
 let resultados = produtos.filter(p=>{
 
-
 if(!p.nome.toLowerCase().includes(texto))
 return false;
-
 
 if(categoria!="todos" && p.categoria!=categoria)
 return false;
 
-
 if(loja!="todas" && p.loja!=loja)
 return false;
-
 
 return true;
 
@@ -799,8 +828,6 @@ resultados.sort(
 }
 
 
-/* MOSTRAR */
-
 mostrar(resultados);
 
 }
@@ -810,10 +837,8 @@ mostrar(resultados);
 
 function mostrar(lista){
 
-
 let div =
 document.getElementById("resultados");
-
 
 let info =
 document.getElementById("info");
@@ -840,7 +865,6 @@ div.innerHTML="";
 
 
 lista.forEach(p=>{
-
 
 div.innerHTML+=`
 
@@ -875,9 +899,7 @@ Ver oferta
 
 `;
 
-
 });
-
 
 }
 
@@ -887,3 +909,4 @@ Ver oferta
 </body>
 
 </html>
+```
