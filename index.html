@@ -1,159 +1,290 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EconoCompras</title>
 
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
 body{
-background:#f4f4f4;
+    background:#f4f4f4;
+    color:#222;
 }
 
+/* CABEÇALHO */
+
 .topo{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:15px;
-background:linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
-padding:20px;
-color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    background:linear-gradient(90deg,#5a2fd8,#ff7a00,#e11d48);
+    padding:20px;
+    color:white;
 }
 
 .logo{
-width:55px;
+    width:55px;
 }
+
+/* CONTAINER */
 
 .container{
-max-width:1100px;
-margin:auto;
-padding:30px;
+    max-width:1100px;
+    margin:auto;
+    padding:30px;
 }
 
+/* SOBRE */
+
 .sobre{
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 3px 8px rgba(0,0,0,0.08);
-margin-bottom:25px;
-line-height:1.6;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.08);
+    margin-bottom:25px;
+    line-height:1.6;
 }
 
 .sobre h2{
-margin-bottom:10px;
+    margin-bottom:10px;
 }
 
 .sobre h3{
-margin-top:15px;
-margin-bottom:5px;
+    margin-top:15px;
+    margin-bottom:5px;
 }
 
+/* PLANOS */
+
+.planos{
+    margin-bottom:25px;
+}
+
+.planos h2{
+    margin-bottom:15px;
+}
+
+.lista-planos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+.plano{
+    background:white;
+    padding:22px;
+    border-radius:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.08);
+    text-align:center;
+    transition:0.2s;
+}
+
+.plano:hover{
+    transform:translateY(-4px);
+}
+
+.plano h3{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.preco-plano{
+    font-size:26px;
+    font-weight:bold;
+    color:#5a2fd8;
+    margin:12px 0;
+}
+
+.plano ul{
+    list-style:none;
+    text-align:left;
+    margin:15px 0;
+    line-height:1.8;
+}
+
+.botao-plano{
+    display:block;
+    padding:10px;
+    background:#5a2fd8;
+    color:white;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.2s;
+}
+
+.botao-plano:hover{
+    background:#4322a8;
+}
+
+.destaque{
+    border:2px solid #ff7a00;
+}
+
+/* PESQUISA */
+
 .search-box{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
-margin-bottom:25px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    margin-bottom:25px;
 }
 
 input{
-width:100%;
-padding:12px;
-margin-bottom:15px;
-border-radius:6px;
-border:1px solid #ccc;
-font-size:16px;
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:16px;
 }
 
 .filters{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
 select{
-flex:1;
-padding:10px;
-border-radius:6px;
-border:1px solid #ccc;
+    flex:1;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
 }
+
+/* INFORMAÇÕES */
 
 .info{
-margin:20px 0;
-font-weight:bold;
+    margin:20px 0;
+    font-weight:bold;
 }
 
+/* RESULTADOS */
+
 .resultados{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:18px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
 }
 
 .produto{
-background:white;
-padding:18px;
-border-radius:10px;
-box-shadow:0 3px 8px rgba(0,0,0,0.08);
-transition:0.2s;
+    background:white;
+    padding:18px;
+    border-radius:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.08);
+    transition:0.2s;
 }
 
 .produto:hover{
-transform:translateY(-4px);
+    transform:translateY(-4px);
 }
 
 .nome{
-font-weight:bold;
-font-size:16px;
-margin-bottom:6px;
+    font-weight:bold;
+    font-size:16px;
+    margin-bottom:6px;
 }
 
 .preco{
-color:#e11d48;
-font-weight:bold;
-font-size:18px;
-margin-top:6px;
+    color:#e11d48;
+    font-weight:bold;
+    font-size:18px;
+    margin-top:6px;
 }
 
 .loja{
-margin-top:5px;
-color:#555;
+    margin-top:5px;
+    color:#555;
 }
 
 .botao{
-margin-top:12px;
-display:block;
-text-align:center;
-padding:10px;
-background:#5a2fd8;
-color:white;
-border-radius:6px;
-text-decoration:none;
-font-weight:bold;
-transition:0.2s;
+    margin-top:12px;
+    display:block;
+    text-align:center;
+    padding:10px;
+    background:#5a2fd8;
+    color:white;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.2s;
 }
 
 .botao:hover{
-background:#4322a8;
+    background:#4322a8;
+}
+
+/* RODAPÉ */
+
+footer{
+    margin-top:30px;
+    padding:20px;
+    text-align:center;
+    background:#222;
+    color:white;
+    font-size:14px;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media(max-width:600px){
+
+    .container{
+        padding:20px;
+    }
+
+    .topo h1{
+        font-size:25px;
+    }
+
+    .logo{
+        width:45px;
+    }
+
+    .filters{
+        flex-direction:column;
+    }
+
+    select{
+        width:100%;
+    }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
+
+<!-- CABEÇALHO -->
+
 <header class="topo">
-<img src="logo.png" class="logo">
+
+<img src="logo.png" class="logo" alt="Logo EconoCompras">
+
 <h1>EconoCompras</h1>
+
 </header>
 
+
 <div class="container">
+
+
+<!-- SOBRE -->
 
 <div class="sobre">
 
@@ -161,165 +292,598 @@ background:#4322a8;
 
 <p>
 O EconoCompras é um protótipo de plataforma digital criado para ajudar consumidores
-a encontrar os melhores preços na internet. O sistema reúne produtos de diversas
-lojas online e permite filtragem por categoria, preço e avaliação.
+a encontrar melhores opções de compra na internet. O sistema reúne informações
+de produtos de diferentes lojas online, facilitando a pesquisa e a comparação
+de preços, avaliações e opções de compra.
 </p>
+
 
 <h3>Como funciona</h3>
 
 <p>
 1. O usuário pesquisa um produto.<br>
-2. O sistema analisa opções de diferentes lojas.<br>
-3. Os resultados são organizados por preço e avaliação.<br>
-4. O consumidor pode escolher a melhor oferta disponível.
+2. O sistema apresenta opções de diferentes lojas.<br>
+3. Os resultados podem ser filtrados e organizados.<br>
+4. O consumidor compara as opções disponíveis.<br>
+5. Ao escolher uma oferta, o usuário é direcionado para a loja responsável pela venda.
 </p>
 
 </div>
 
+
+<!-- PLANOS -->
+
+<div class="planos">
+
+<h2>Planos EconoCompras</h2>
+
+
+<div class="lista-planos">
+
+
+<!-- BÁSICO -->
+
+<div class="plano">
+
+<h3>Plano Básico</h3>
+
+<div class="preco-plano">
+R$ 12,90/mês
+</div>
+
+<ul>
+<li>✓ Comparação de preços</li>
+<li>✓ Filtros avançados</li>
+<li>✓ Histórico de preços</li>
+</ul>
+
+<a href="#" class="botao-plano">
+Assinar plano
+</a>
+
+</div>
+
+
+<!-- INTERMEDIÁRIO -->
+
+<div class="plano destaque">
+
+<h3>Plano Intermediário</h3>
+
+<div class="preco-plano">
+R$ 22,90/mês
+</div>
+
+<ul>
+<li>✓ Tudo do Plano Básico</li>
+<li>✓ Alertas de queda de preço</li>
+<li>✓ Comparação de até 10 lojas</li>
+<li>✓ Análise de custo-benefício</li>
+</ul>
+
+<a href="#" class="botao-plano">
+Assinar plano
+</a>
+
+</div>
+
+
+<!-- AVANÇADO -->
+
+<div class="plano">
+
+<h3>Plano Avançado</h3>
+
+<div class="preco-plano">
+R$ 34,90/mês
+</div>
+
+<ul>
+<li>✓ Tudo do Intermediário</li>
+<li>✓ Comparação ilimitada</li>
+<li>✓ Alertas personalizados</li>
+<li>✓ Histórico completo</li>
+<li>✓ Análise de confiabilidade das lojas</li>
+</ul>
+
+<a href="#" class="botao-plano">
+Assinar plano
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- PESQUISA -->
+
 <div class="search-box">
 
-<input type="text" id="busca" placeholder="Pesquisar produto..." onkeyup="buscar()">
+<input
+type="text"
+id="busca"
+placeholder="Pesquisar produto..."
+onkeyup="buscar()"
+>
+
 
 <div class="filters">
 
+
 <select id="categoria" onchange="buscar()">
-<option value="todos">Categoria</option>
-<option value="eletronico">Eletrônicos</option>
-<option value="casa">Casa</option>
-<option value="roupa">Roupas</option>
-<option value="informatica">Informática</option>
-<option value="acessorios">Acessórios</option>
+
+<option value="todos">
+Categoria
+</option>
+
+<option value="eletronico">
+Eletrônicos
+</option>
+
+<option value="casa">
+Casa
+</option>
+
+<option value="roupa">
+Roupas
+</option>
+
+<option value="informatica">
+Informática
+</option>
+
+<option value="acessorios">
+Acessórios
+</option>
+
 </select>
+
 
 <select id="loja" onchange="buscar()">
-<option value="todas">Loja</option>
-<option value="Amazon">Amazon</option>
-<option value="Shopee">Shopee</option>
-<option value="Mercado Livre">Mercado Livre</option>
-<option value="Magazine Luiza">Magazine Luiza</option>
+
+<option value="todas">
+Loja
+</option>
+
+<option value="Amazon">
+Amazon
+</option>
+
+<option value="Shopee">
+Shopee
+</option>
+
+<option value="Mercado Livre">
+Mercado Livre
+</option>
+
+<option value="Magazine Luiza">
+Magazine Luiza
+</option>
+
 </select>
+
 
 <select id="preco" onchange="buscar()">
-<option value="todos">Ordenar preço</option>
-<option value="baixo">Mais barato</option>
-<option value="alto">Mais caro</option>
+
+<option value="todos">
+Ordenar preço
+</option>
+
+<option value="baixo">
+Mais barato
+</option>
+
+<option value="alto">
+Mais caro
+</option>
+
 </select>
 
-</div>
 
 </div>
 
-<div class="info" id="info">Pesquise um produto para começar</div>
+</div>
+
+
+<!-- INFORMAÇÕES -->
+
+<div class="info" id="info">
+Pesquise um produto para começar
+</div>
+
+
+<!-- RESULTADOS -->
 
 <div class="resultados" id="resultados"></div>
 
+
 </div>
+
+
+<!-- RODAPÉ -->
+
+<footer>
+
+EconoCompras © 2026  
+<br>
+Protótipo desenvolvido para projeto acadêmico.
+
+</footer>
+
 
 <script>
 
+
+/* PRODUTOS */
+
 const produtos = [
 
-{nome:"Mouse Gamer RGB",categoria:"informatica",preco:120,qualidade:4.6,loja:"Amazon",link:"https://amazon.com"},
-{nome:"Mouse Sem Fio",categoria:"informatica",preco:80,qualidade:4.3,loja:"Shopee",link:"https://shopee.com"},
-{nome:"Teclado Mecânico RGB",categoria:"informatica",preco:270,qualidade:4.5,loja:"Amazon",link:"https://amazon.com"},
-{nome:"Teclado Simples USB",categoria:"informatica",preco:60,qualidade:4.0,loja:"Mercado Livre",link:"https://mercadolivre.com"},
-{nome:"Headset Gamer",categoria:"informatica",preco:210,qualidade:4.4,loja:"Amazon",link:"https://amazon.com"},
-{nome:"Monitor Gamer 24",categoria:"eletronico",preco:950,qualidade:4.7,loja:"Amazon",link:"https://amazon.com"},
-{nome:"Webcam HD",categoria:"informatica",preco:150,qualidade:4.3,loja:"Shopee",link:"https://shopee.com"},
 
-{nome:"Air Fryer Digital",categoria:"casa",preco:350,qualidade:4.7,loja:"Amazon",link:"https://amazon.com"},
-{nome:"Liquidificador Turbo",categoria:"casa",preco:140,qualidade:4.3,loja:"Magazine Luiza",link:"https://magazineluiza.com.br"},
-{nome:"Cafeteira Elétrica",categoria:"casa",preco:180,qualidade:4.5,loja:"Magazine Luiza",link:"https://magazineluiza.com.br"},
-{nome:"Microondas 20L",categoria:"casa",preco:520,qualidade:4.4,loja:"Amazon",link:"https://amazon.com"},
-{nome:"Sanduicheira Grill",categoria:"casa",preco:110,qualidade:4.2,loja:"Shopee",link:"https://shopee.com"},
+{
+nome:"Mouse Gamer RGB",
+categoria:"informatica",
+preco:120,
+qualidade:4.6,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
 
-{nome:"Camiseta Básica",categoria:"roupa",preco:45,qualidade:4.1,loja:"Shopee",link:"https://shopee.com"},
-{nome:"Camiseta Premium",categoria:"roupa",preco:70,qualidade:4.5,loja:"Amazon",link:"https://amazon.com"},
-{nome:"Calça Jeans Masculina",categoria:"roupa",preco:120,qualidade:4.4,loja:"Mercado Livre",link:"https://mercadolivre.com"},
-{nome:"Tênis Esportivo",categoria:"roupa",preco:260,qualidade:4.6,loja:"Amazon",link:"https://amazon.com"},
 
-{nome:"Relógio Digital",categoria:"acessorios",preco:90,qualidade:4.2,loja:"Shopee",link:"https://shopee.com"},
-{nome:"Mochila Escolar",categoria:"acessorios",preco:130,qualidade:4.5,loja:"Amazon",link:"https://amazon.com"},
-{nome:"Fone Bluetooth",categoria:"eletronico",preco:160,qualidade:4.4,loja:"Mercado Livre",link:"https://mercadolivre.com"},
-{nome:"Powerbank 10000mAh",categoria:"eletronico",preco:120,qualidade:4.3,loja:"Shopee",link:"https://shopee.com"}
+{
+nome:"Mouse Sem Fio",
+categoria:"informatica",
+preco:80,
+qualidade:4.3,
+loja:"Shopee",
+link:"https://shopee.com.br/"
+},
 
-]
+
+{
+nome:"Teclado Mecânico RGB",
+categoria:"informatica",
+preco:270,
+qualidade:4.5,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
+
+
+{
+nome:"Teclado Simples USB",
+categoria:"informatica",
+preco:60,
+qualidade:4.0,
+loja:"Mercado Livre",
+link:"https://www.mercadolivre.com.br/"
+},
+
+
+{
+nome:"Headset Gamer",
+categoria:"informatica",
+preco:210,
+qualidade:4.4,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
+
+
+{
+nome:"Monitor Gamer 24",
+categoria:"eletronico",
+preco:950,
+qualidade:4.7,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
+
+
+{
+nome:"Webcam HD",
+categoria:"informatica",
+preco:150,
+qualidade:4.3,
+loja:"Shopee",
+link:"https://shopee.com.br/"
+},
+
+
+{
+nome:"Air Fryer Digital",
+categoria:"casa",
+preco:350,
+qualidade:4.7,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
+
+
+{
+nome:"Liquidificador Turbo",
+categoria:"casa",
+preco:140,
+qualidade:4.3,
+loja:"Magazine Luiza",
+link:"https://www.magazineluiza.com.br/"
+},
+
+
+{
+nome:"Cafeteira Elétrica",
+categoria:"casa",
+preco:180,
+qualidade:4.5,
+loja:"Magazine Luiza",
+link:"https://www.magazineluiza.com.br/"
+},
+
+
+{
+nome:"Microondas 20L",
+categoria:"casa",
+preco:520,
+qualidade:4.4,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
+
+
+{
+nome:"Sanduicheira Grill",
+categoria:"casa",
+preco:110,
+qualidade:4.2,
+loja:"Shopee",
+link:"https://shopee.com.br/"
+},
+
+
+{
+nome:"Camiseta Básica",
+categoria:"roupa",
+preco:45,
+qualidade:4.1,
+loja:"Shopee",
+link:"https://shopee.com.br/"
+},
+
+
+{
+nome:"Camiseta Premium",
+categoria:"roupa",
+preco:70,
+qualidade:4.5,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
+
+
+{
+nome:"Calça Jeans Masculina",
+categoria:"roupa",
+preco:120,
+qualidade:4.4,
+loja:"Mercado Livre",
+link:"https://www.mercadolivre.com.br/"
+},
+
+
+{
+nome:"Tênis Esportivo",
+categoria:"roupa",
+preco:260,
+qualidade:4.6,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
+
+
+{
+nome:"Relógio Digital",
+categoria:"acessorios",
+preco:90,
+qualidade:4.2,
+loja:"Shopee",
+link:"https://shopee.com.br/"
+},
+
+
+{
+nome:"Mochila Escolar",
+categoria:"acessorios",
+preco:130,
+qualidade:4.5,
+loja:"Amazon",
+link:"https://www.amazon.com.br/"
+},
+
+
+{
+nome:"Fone Bluetooth",
+categoria:"eletronico",
+preco:160,
+qualidade:4.4,
+loja:"Mercado Livre",
+link:"https://www.mercadolivre.com.br/"
+},
+
+
+{
+nome:"Powerbank 10000mAh",
+categoria:"eletronico",
+preco:120,
+qualidade:4.3,
+loja:"Shopee",
+link:"https://shopee.com.br/"
+}
+
+
+];
+
+
+/* BUSCA */
 
 function buscar(){
 
-let texto = document.getElementById("busca").value.toLowerCase()
-let categoria = document.getElementById("categoria").value
-let loja = document.getElementById("loja").value
-let precoFiltro = document.getElementById("preco").value
+
+let texto =
+document.getElementById("busca").value.toLowerCase();
+
+
+let categoria =
+document.getElementById("categoria").value;
+
+
+let loja =
+document.getElementById("loja").value;
+
+
+let precoFiltro =
+document.getElementById("preco").value;
+
 
 if(texto.trim()===""){
-document.getElementById("resultados").innerHTML=""
-document.getElementById("info").innerHTML="Pesquise um produto para começar"
-return
+
+document.getElementById("resultados").innerHTML="";
+
+document.getElementById("info").innerHTML=
+"Pesquise um produto para começar";
+
+return;
+
 }
+
 
 let resultados = produtos.filter(p=>{
 
-if(!p.nome.toLowerCase().includes(texto)) return false
-if(categoria!="todos" && p.categoria!=categoria) return false
-if(loja!="todas" && p.loja!=loja) return false
 
-return true
+if(!p.nome.toLowerCase().includes(texto))
+return false;
 
-})
+
+if(categoria!="todos" && p.categoria!=categoria)
+return false;
+
+
+if(loja!="todas" && p.loja!=loja)
+return false;
+
+
+return true;
+
+});
+
+
+/* ORDENAÇÃO */
 
 if(precoFiltro=="baixo"){
-resultados.sort((a,b)=>a.preco-b.preco)
+
+resultados.sort(
+(a,b)=>a.preco-b.preco
+);
+
 }
+
 
 if(precoFiltro=="alto"){
-resultados.sort((a,b)=>b.preco-a.preco)
+
+resultados.sort(
+(a,b)=>b.preco-a.preco
+);
+
 }
 
-mostrar(resultados)
+
+/* MOSTRAR */
+
+mostrar(resultados);
 
 }
+
+
+/* MOSTRAR PRODUTOS */
 
 function mostrar(lista){
 
-let div = document.getElementById("resultados")
-let info = document.getElementById("info")
+
+let div =
+document.getElementById("resultados");
+
+
+let info =
+document.getElementById("info");
+
 
 if(lista.length==0){
-div.innerHTML="Nenhum produto encontrado"
-info.innerHTML=""
-return
+
+div.innerHTML=
+"Nenhum produto encontrado";
+
+info.innerHTML="";
+
+return;
+
 }
 
-info.innerHTML = lista.length + " resultados encontrados"
 
-div.innerHTML=""
+info.innerHTML =
+lista.length +
+" resultados encontrados";
+
+
+div.innerHTML="";
+
 
 lista.forEach(p=>{
+
 
 div.innerHTML+=`
 
 <div class="produto">
 
-<div class="nome">${p.nome}</div>
+<div class="nome">
+${p.nome}
+</div>
 
+<div>
 ⭐ ${p.qualidade}
+</div>
 
-<div class="preco">R$ ${p.preco}</div>
+<div class="preco">
+R$ ${p.preco.toFixed(2).replace(".",",")}
+</div>
 
-<div class="loja">Loja: ${p.loja}</div>
+<div class="loja">
+Loja: ${p.loja}
+</div>
 
-<a href="${p.link}" target="_blank" class="botao">Ver oferta</a>
+<a
+href="${p.link}"
+target="_blank"
+rel="noopener noreferrer"
+class="botao"
+>
+Ver oferta
+</a>
 
 </div>
 
-`
+`;
 
-})
+
+});
+
 
 }
 
 </script>
 
+
 </body>
+
 </html>
